@@ -1,69 +1,45 @@
-// --- FUNCIONAMIENTO DEL RELOJ (REQUERIMIENTO 1) ---
-function actualizarReloj() {
-    const ahora = new Date();
-    
-    // Formato de fecha: Lunes, 14 de abril de 2026
-    const opcionesFecha = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-    const fechaTexto = ahora.toLocaleDateString('es-ES', opcionesFecha);
-    
-    // Formato de hora con segundos: 21:30:05
-    const horaTexto = ahora.toLocaleTimeString('es-ES');
-
-    document.getElementById('fecha-actual').innerText = fechaTexto;
-    document.getElementById('reloj-vivo').innerText = horaTexto;
+// 1. RELOJ CON SEGUNDOS EN VIVO
+function iniciarReloj() {
+    const tick = () => {
+        const ahora = new Date();
+        const opciones = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
+        document.getElementById('fecha-actual').textContent = ahora.toLocaleDateString('es-ES', opciones);
+        document.getElementById('reloj-vivo').textContent = ahora.toLocaleTimeString('es-ES');
+    };
+    setInterval(tick, 1000);
+    tick();
 }
 
-// Ejecutar cada 1 segundo
-setInterval(actualizarReloj, 1000);
-actualizarReloj(); // Llamada inicial para evitar delay
+// 2 & 4. ARTÍCULOS DINÁMICOS Y CONTADOR
+const form = document.getElementById('form-articulo');
+const feed = document.getElementById('contenedor-articulos');
+const displayContador = document.getElementById('num-articulos');
 
+// Contar artículos iniciales
+let contador = document.querySelectorAll('article').length;
+displayContador.textContent = contador;
 
-// --- GESTIÓN DE ARTÍCULOS DINÁMICOS (REQUERIMIENTO 2 Y 4) ---
-const formArticulo = document.getElementById('form-articulo');
-const contenedorArticulos = document.getElementById('contenedor-articulos');
-const contadorElemento = document.getElementById('num-articulos');
-
-let contadorTotal = 0;
-
-formArticulo.addEventListener('submit', function(evento) {
-    evento.preventDefault(); // Evitar que la página se recargue
-
-    // 1. Obtener valores de los campos
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
     const titulo = document.getElementById('titulo-art').value;
-    const contenido = document.getElementById('desc-art').value;
+    const desc = document.getElementById('desc-art').value;
 
-    // 2. Crear la estructura del nuevo artículo
-    const nuevoArticulo = document.createElement('article');
+    const nuevoArt = document.createElement('article');
+    nuevoArt.innerHTML = `<h3>${titulo}</h3><p><strong>Categoría:</strong> Reciente</p><p>${desc}</p>`;
     
-    // Insertar contenido HTML
-    nuevoArticulo.innerHTML = `
-        <h3>${titulo}</h3>
-        <p><strong>Categoría:</strong> Reciente</p>
-        <p>${contenido}</p>
-    `;
-
-    // 3. Agregar el artículo al inicio de la sección
-    contenedorArticulos.prepend(nuevoArticulo);
-
-    // 4. Actualizar el contador global
-    contadorTotal++;
-    contadorElemento.innerText = contadorTotal;
-
-    // 5. Limpiar el formulario
-    formArticulo.reset();
+    feed.prepend(nuevoArt);
+    
+    contador++;
+    displayContador.textContent = contador;
+    form.reset();
 });
 
-
-// --- FORMULARIO DE CONTACTO (REQUERIMIENTO 3) ---
-const formContacto = document.getElementById('form-contacto');
-
-formContacto.addEventListener('submit', function(evento) {
-    evento.preventDefault();
-
-    const nombre = document.getElementById('nombre-con').value;
-
-    // Simulación de envío
-    alert(`¡Gracias ${nombre}! Tu mensaje ha sido enviado correctamente al equipo de El Faro.`);
-    
-    formContacto.reset();
+// 3. CONTACTO
+document.getElementById('form-contacto').addEventListener('submit', function(e) {
+    e.preventDefault();
+    alert("Gracias por contactarnos. Tu mensaje ha sido enviado.");
+    this.reset();
 });
+
+document.addEventListener('DOMContentLoaded', iniciarReloj);

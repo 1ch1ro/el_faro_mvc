@@ -3,96 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>El Faro - Periódico Digital (Versión Pro)</title>
+    <title>El Faro - Periódico Digital</title>
     <link rel="stylesheet" href="CSS/style.css">
 </head>
 <body>
 
-    <header>
-        <div class="header-content">
-            <img src="IMG/01248_mh_04101_a-2.jpg" alt="Logotipo El Faro" width="100">
-            <h1>El Faro</h1>
-        </div>
-        <div id="fecha-contenedor" class="estilo-reloj">
+    <header class="main-header">
+        <img src="IMG/01248_mh_04101_a-2.jpg" alt="Logotipo El Faro" class="logo-img">
+        <h1>El Faro</h1>
+        <div id="reloj-contenedor" class="reloj-estilo">
             <p id="fecha-actual"></p>
             <p id="reloj-vivo"></p>
         </div>
-        <hr>
     </header>
 
-    <nav>
+    <nav class="navbar">
         <ul>
             <li><a href="#inicio">Inicio</a></li>
-            <li><a href="#admin-articulos">Publicar</a></li>
+            <li><a href="#seccion-publicar">Publicar</a></li>
             <li><a href="#deporte">Deporte</a></li>
             <li><a href="#negocios">Negocios</a></li>
             <li><a href="#contacto">Contacto</a></li>
         </ul>
     </nav>
 
-    <main id="inicio">
-        <div class="contador-container">
+    <main class="container">
+        <div class="contador-noticias">
             <p>Total de artículos en el sitio: <span id="num-articulos">0</span></p>
         </div>
 
-        <section id="admin-articulos">
+        <section id="seccion-publicar" class="card">
             <h2>Publicar Nuevo Artículo</h2>
             <form id="form-articulo" class="form-diseno">
-                <div class="campo">
+                <div class="grupo-input">
                     <label for="titulo-art">Título del Artículo:</label>
                     <input type="text" id="titulo-art" placeholder="Ej: Gran maratón este domingo" required>
                 </div>
-                <div class="campo">
+                <div class="grupo-input">
                     <label for="desc-art">Descripción / Contenido:</label>
-                    <textarea id="desc-art" rows="4" placeholder="Escribe aquí el detalle de la noticia..." required></textarea>
+                    <textarea id="desc-art" rows="5" placeholder="Escribe aquí el detalle de la noticia..." required></textarea>
                 </div>
-                <button type="submit" id="btn-publicar">Enviar Artículo</button>
+                <button type="submit" class="btn-enviar">Enviar Artículo</button>
             </form>
         </section>
 
-        <section id="seccion-noticias">
-            <h2>Noticias Recientes</h2>
-            <div id="contenedor-articulos" class="container">
+        <div id="inicio" class="seccion-informativa">
+            <h2>Noticias Generales</h2>
+            <div id="contenedor-articulos" class="grid-noticias">
                 </div>
+        </div>
+
+        <section id="deporte" class="seccion-informativa">
+            <h2>Deportes</h2>
+            <div class="grid-noticias">
+                <article>
+                    <h3>Triunfo local en el torneo</h3>
+                    <p><strong>Categoría:</strong> Fútbol</p>
+                    <p>El equipo de la ciudad avanza a la final tras una victoria agónica.</p>
+                </article>
+            </div>
         </section>
 
-        <section>
-            <h2>Reportaje Multimedia</h2>
-            <article>
-                <h3>Video del día: Reinauguración plaza en La Serena</h3>
-                <video controls width="100%" poster="IMG/01248_mh_04101_a-2.jpg" preload="metadata">
-                    <source src="IMG/Download.mp4" type="video/mp4">
-                    Tu navegador no soporta videos.
-                </video>
-            </article>
+        <section id="negocios" class="seccion-informativa">
+            <h2>Negocios</h2>
+            <div class="grid-noticias">
+                <article>
+                    <h3>Taller para Pymes</h3>
+                    <p><strong>Categoría:</strong> Economía</p>
+                    <p>Charlas sobre digitalización financiera para emprendedores locales.</p>
+                </article>
+            </div>
+        </section>
 
-            <article>
-                <h3>Reporte alcaldesa: Reinauguración de plaza</h3>
-                <audio controls>
-                    <source src="IMG/ReelAudio-45931.mp3" type="audio/mpeg">
-                    Tu navegador no soporta audio.
-                </audio>
-            </article>
+        <section class="multimedia-centrada">
+            <h2>Reportaje Multimedia</h2>
+            <div class="multimedia-stack">
+                <article class="media-item">
+                    <h3>Video: Plaza de Armas</h3>
+                    <video controls poster="IMG/01248_mh_04101_a-2.jpg" width="100%">
+                        <source src="IMG/Download.mp4" type="video/mp4">
+                    </video>
+                </article>
+                
+                <article class="media-item">
+                    <h3>Audio: Reporte Alcaldía</h3>
+                    <audio controls style="width: 100%;">
+                        <source src="IMG/ReelAudio-45931.mp3" type="audio/mpeg">
+                    </audio>
+                </article>
+            </div>
+        </section>
+
+        <section id="contacto" class="card">
+            <h2>Contacto</h2>
+            <form id="form-contacto" class="form-diseno">
+                <div class="grupo-input">
+                    <label for="nombre-con">Nombre completo:</label>
+                    <input type="text" id="nombre-con" placeholder="Tu nombre" required>
+                </div>
+                <div class="grupo-input">
+                    <label for="msj-con">Mensaje:</label>
+                    <textarea id="msj-con" rows="3" placeholder="Escribe tu mensaje..." required></textarea>
+                </div>
+                <button type="submit" class="btn-enviar">Enviar Mensaje</button>
+            </form>
         </section>
     </main>
 
-    <section id="contacto" class="seccion-final">
-        <h2>Contacto</h2>
-        <form id="form-contacto" class="form-diseno">
-            <div class="campo">
-                <label for="nombre-con">Nombre completo:</label>
-                <input type="text" id="nombre-con" placeholder="Tu nombre" required>
-            </div>
-            <div class="campo">
-                <label for="msj-con">Mensaje:</label>
-                <textarea id="msj-con" rows="4" placeholder="¿En qué podemos ayudarte?" required></textarea>
-            </div>
-            <button type="submit">Enviar Mensaje</button>
-        </form>
-    </section>
-
-    <footer>
-        <p>&copy; 2026 El Faro - Proyecto Taller de Aplicaciones para Internet</p>
+    <footer class="main-footer">
+        <p>&copy; 2026 Periódico El Faro | Proyecto AIEP</p>
     </footer>
 
     <script src="JS/script.js"></script>
