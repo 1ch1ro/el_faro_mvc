@@ -4,116 +4,234 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>El Faro - Periódico Digital</title>
-    <link rel="stylesheet" href="CSS/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --primario: #31231e; /* Tu color original */
+            --gris-barra: #c9d2d0; /* Tu color original */
+        }
+        body { background-color: #f5f5f5; font-family: 'Roboto', sans-serif; }
+        
+        /* Estilos conservando tu identidad */
+        .bg-faro { background-color: var(--primario); }
+        .navbar-faro { background-color: var(--gris-barra); border-bottom: 1px solid #ccc; }
+        .text-faro { color: var(--primario); }
+        
+        .reloj-estilo {
+            background: var(--primario);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            display: inline-block;
+        }
+        
+        .noticia-principal-img { 
+            height: 400px; 
+            object-fit: cover; 
+            border-radius: 4px; 
+        }
+
+        footer { background-color: #222; color: #ccc; }
+    </style>
 </head>
 <body>
 
-    <header class="main-header">
-        <img src="IMG/01248_mh_04101_a-2.jpg" alt="Logotipo El Faro" class="logo-img">
-        <h1>El Faro</h1>
-        <div id="reloj-contenedor" class="reloj-estilo">
-            <p id="fecha-actual"></p>
-            <p id="reloj-vivo"></p>
+    <div class="bg-faro text-white py-2 shadow-sm">
+        <div class="container d-flex justify-content-between align-items-center">
+            <span class="small fw-bold"><i class="bi bi-megaphone-fill me-2"></i>AVISO: Importante actualización en el cronograma regional.</span>
+            <div id="reloj-contenedor" class="small d-none d-md-block">
+                <span id="fecha-actual"></span> | <span id="reloj-vivo" class="fw-bold"></span>
+            </div>
+        </div>
+    </div>
+
+    <header class="py-4 bg-white border-bottom">
+        <div class="container text-center">
+            <img src="IMG/01248_mh_04101_a-2.jpg" alt="Logotipo El Faro" class="mb-2" style="width: 100px;">
+            <h1 class="display-4 fw-bold text-faro mb-0">El Faro</h1>
         </div>
     </header>
 
-    <nav class="navbar">
-        <ul>
-            <li><a href="#inicio">Inicio</a></li>
-            <li><a href="#seccion-publicar">Publicar</a></li>
-            <li><a href="#deporte">Deporte</a></li>
-            <li><a href="#negocios">Negocios</a></li>
-            <li><a href="#contacto">Contacto</a></li>
-        </ul>
+    <nav class="navbar navbar-expand-lg navbar-light navbar-faro sticky-top shadow-sm">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navFaro">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navFaro">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link fw-bold" href="#inicio">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link fw-bold" href="#seccion-publicar">Publicar</a></li>
+                    <li class="nav-item"><a class="nav-link fw-bold" href="#deporte">Deporte</a></li>
+                    <li class="nav-item"><a class="nav-link fw-bold" href="#multimedia">Multimedia</a></li>
+                </ul>
+                <div class="d-flex">
+                    <a href="#contacto" class="btn btn-dark btn-sm">Contacto</a>
+                </div>
+            </div>
+        </div>
     </nav>
 
-    <main class="container">
-        <div class="contador-noticias">
-            <p>Total de artículos en el sitio: <span id="num-articulos">0</span></p>
+    <main class="container my-5">
+        
+        <div class="row g-4 mb-5" id="inicio">
+            <div class="col-lg-8">
+                <div class="card shadow-sm h-100 border-0">
+                    <img src="IMG/01248_mh_04101_a-2.jpg" class="card-img-top noticia-principal-img" alt="Faro Monumental">
+                    <div class="card-body">
+                        <h2 class="card-title fw-bold">Noticia Principal: Plaza de Armas</h2>
+                        <p class="card-text text-secondary">
+                            El Faro Monumental y la Plaza de Armas de La Serena se mantienen como los puntos clave de nuestra identidad regional. 
+                            En esta edición revisamos los cambios históricos y su impacto en el turismo local.
+                        </p>
+                        <hr>
+                        <div class="d-flex align-items-center">
+                            <span class="fw-bold me-2">Artículos publicados:</span>
+                            <span id="num-articulos" class="badge bg-danger fs-6">0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <h4 class="fw-bold mb-4 border-bottom pb-2">Otras Noticias</h4>
+                <div id="contenedor-articulos">
+                    <div class="card mb-3 shadow-sm border-0">
+                        <div class="card-body">
+                            <h6 class="fw-bold">Reporte Alcaldía</h6>
+                            <p class="small text-muted mb-0">Resumen de las últimas gestiones municipales en la zona típica.</p>
+                        </div>
+                    </div>
+                    <div class="card mb-3 shadow-sm border-0">
+                        <div class="card-body">
+                            <h6 class="fw-bold">Deportes La Serena</h6>
+                            <p class="small text-muted mb-0">Preparativos para el próximo encuentro en el estadio local.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <section id="seccion-publicar" class="card">
-            <h2>Publicar Nuevo Artículo</h2>
-            <form id="form-articulo" class="form-diseno">
-                <div class="grupo-input">
-                    <label for="titulo-art">Título del Artículo:</label>
-                    <input type="text" id="titulo-art" placeholder="Ej: Gran maratón este domingo" required>
+        <section id="multimedia" class="py-5 bg-white rounded shadow-sm mb-5 px-4">
+            <h3 class="fw-bold mb-4">Sección Multimedia</h3>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="card h-100 border-0 bg-light">
+                        <div class="card-body">
+                            <h5 class="fw-bold mb-3">Video: Plaza de Armas</h5>
+                            <div class="ratio ratio-16x9">
+                                <video controls poster="IMG/01248_mh_04101_a-2.jpg">
+                                    <source src="IMG/Download.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="grupo-input">
-                    <label for="desc-art">Descripción / Contenido:</label>
-                    <textarea id="desc-art" rows="5" placeholder="Escribe aquí el detalle de la noticia..." required></textarea>
+                <div class="col-md-6">
+                    <div class="card h-100 border-0 bg-light">
+                        <div class="card-body d-flex flex-column justify-content-center text-center">
+                            <h5 class="fw-bold mb-3">Audio: Reporte Alcaldesa</h5>
+                            <i class="bi bi-volume-up display-1 text-secondary mb-3"></i>
+                            <audio controls class="w-100">
+                                <source src="IMG/ReelAudio-45931.mp3" type="audio/mpeg">
+                            </audio>
+                        </div>
+                    </div>
                 </div>
-                <button type="submit" class="btn-enviar">Enviar Artículo</button>
-            </form>
-        </section>
-
-        <div id="inicio" class="seccion-informativa">
-            <h2>Noticias Generales</h2>
-            <div id="contenedor-articulos" class="grid-noticias">
-                </div>
-        </div>
-
-        <section id="deporte" class="seccion-informativa">
-            <h2>Deportes</h2>
-            <div class="grid-noticias">
-                <article>
-                    <h3>Triunfo local en el torneo</h3>
-                    <p><strong>Categoría:</strong> Fútbol</p>
-                    <p>El equipo de la ciudad avanza a la final tras una victoria agónica.</p>
-                </article>
             </div>
         </section>
 
-        <section id="negocios" class="seccion-informativa">
-            <h2>Negocios</h2>
-            <div class="grid-noticias">
-                <article>
-                    <h3>Taller para Pymes</h3>
-                    <p><strong>Categoría:</strong> Economía</p>
-                    <p>Charlas sobre digitalización financiera para emprendedores locales.</p>
-                </article>
+        <section id="seccion-publicar" class="mb-5">
+            <div class="card shadow-sm p-4 border-0">
+                <h2 class="fw-bold mb-4">Publicar Noticia</h2>
+                <form id="form-articulo" class="row g-3">
+                    <div class="col-md-12">
+                        <label class="form-label fw-bold">Título de la Noticia:</label>
+                        <input type="text" id="titulo-art" class="form-control" placeholder="Escribe el título" required>
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label fw-bold">Contenido del artículo:</label>
+                        <textarea id="desc-art" class="form-control" rows="3" placeholder="Escribe la descripción" required></textarea>
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-dark px-4 fw-bold">Enviar Artículo</button>
+                    </div>
+                </form>
             </div>
         </section>
 
-        <section class="multimedia-centrada">
-            <h2>Reportaje Multimedia</h2>
-            <div class="multimedia-stack">
-                <article class="media-item">
-                    <h3>Video: Plaza de Armas</h3>
-                    <video controls poster="IMG/01248_mh_04101_a-2.jpg" width="100%">
-                        <source src="IMG/Download.mp4" type="video/mp4">
-                    </video>
-                </article>
-                
-                <article class="media-item">
-                    <h3>Audio: Reporte Alcaldía</h3>
-                    <audio controls style="width: 100%;">
-                        <source src="IMG/ReelAudio-45931.mp3" type="audio/mpeg">
-                    </audio>
-                </article>
-            </div>
-        </section>
-
-        <section id="contacto" class="card">
-            <h2>Contacto</h2>
-            <form id="form-contacto" class="form-diseno">
-                <div class="grupo-input">
-                    <label for="nombre-con">Nombre completo:</label>
-                    <input type="text" id="nombre-con" placeholder="Tu nombre" required>
-                </div>
-                <div class="grupo-input">
-                    <label for="msj-con">Mensaje:</label>
-                    <textarea id="msj-con" rows="3" placeholder="Escribe tu mensaje..." required></textarea>
-                </div>
-                <button type="submit" class="btn-enviar">Enviar Mensaje</button>
-            </form>
-        </section>
     </main>
 
-    <footer class="main-footer">
-        <p>&copy; 2026 Periódico El Faro | Proyecto AIEP</p>
+    <footer class="pt-5 pb-3">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <h5 class="text-white fw-bold mb-3">El Faro</h5>
+                    <p class="small">Periódico Digital Regional. Proyecto de programación enfocado en la difusión de noticias locales y cultura regional.</p>
+                </div>
+                <div class="col-md-3">
+                    <h6 class="text-white fw-bold mb-3">Menú</h6>
+                    <ul class="list-unstyled small">
+                        <li><a href="#inicio" class="text-decoration-none text-secondary">Inicio</a></li>
+                        <li><a href="#deporte" class="text-decoration-none text-secondary">Deporte</a></li>
+                        <li><a href="#contacto" class="text-decoration-none text-secondary">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h6 class="text-white fw-bold mb-3">Redes</h6>
+                    <div class="d-flex gap-3 fs-5">
+                        <i class="bi bi-facebook"></i><i class="bi bi-instagram"></i><i class="bi bi-twitter-x"></i>
+                    </div>
+                </div>
+            </div>
+            <hr class="mt-4 border-secondary">
+            <div class="text-center">
+                <p class="small text-secondary mb-0">&copy; 2026 Periódico El Faro. Todos los derechos reservados.</p>
+            </div>
+        </div>
     </footer>
 
-    <script src="JS/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        function iniciarReloj() {
+            const tick = () => {
+                const ahora = new Date();
+                const opciones = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
+                document.getElementById('fecha-actual').textContent = ahora.toLocaleDateString('es-ES', opciones);
+                document.getElementById('reloj-vivo').textContent = ahora.toLocaleTimeString('es-ES');
+            };
+            setInterval(tick, 1000);
+            tick();
+        }
+        iniciarReloj();
+
+        const form = document.getElementById('form-articulo');
+        const feed = document.getElementById('contenedor-articulos');
+        const displayContador = document.getElementById('num-articulos');
+
+        // Contar artículos iniciales
+        let contador = document.querySelectorAll('.card-body h6').length;
+        displayContador.textContent = contador;
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const titulo = document.getElementById('titulo-art').value;
+            const desc = document.getElementById('desc-art').value;
+
+            const nuevoArt = document.createElement('div');
+            nuevoArt.className = "card mb-3 shadow-sm border-0";
+            nuevoArt.innerHTML = `
+                <div class="card-body">
+                    <h6 class="fw-bold">${titulo}</h6>
+                    <p class="small text-muted mb-0">${desc}</p>
+                </div>`;
+            
+            feed.prepend(nuevoArt);
+            contador++;
+            displayContador.textContent = contador;
+            form.reset();
+        });
+    </script>
 </body>
 </html>
